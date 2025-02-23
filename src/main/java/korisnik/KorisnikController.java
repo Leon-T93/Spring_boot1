@@ -36,4 +36,7 @@ public class KorisnikController {
     public void delete(@PathVariable Long id) {
         korisnikService.delete(id);
     }
+
+
+    //test
 }
