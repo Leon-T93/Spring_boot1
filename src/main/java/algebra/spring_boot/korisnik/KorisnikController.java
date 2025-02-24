@@ -1,4 +1,4 @@
-package korisnik;
+package algebra.spring_boot.korisnik;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

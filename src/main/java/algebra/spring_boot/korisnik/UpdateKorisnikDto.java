@@ -1,4 +1,4 @@
-package korisnik;
+package algebra.spring_boot.korisnik;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,7 @@
-package korisnik;
+package algebra.spring_boot.korisnik;
 
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service

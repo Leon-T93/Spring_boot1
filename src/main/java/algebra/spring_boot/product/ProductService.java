@@ -1,4 +1,4 @@
-package product;
+package algebra.spring_boot.product;
 
 import org.springframework.stereotype.Service;
 
