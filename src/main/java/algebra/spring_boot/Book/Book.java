@@ -1,5 +1,6 @@
 package algebra.spring_boot.Book;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Book {
 
     private String author;
 
+    @JsonFormat(pattern = "yyyyMMdd")
     private Date yearPublished;
 
     private Double price;

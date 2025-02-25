@@ -1,5 +1,6 @@
 package algebra.spring_boot.Book;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +21,7 @@ public class UpdateBookDto {
     @NotBlank
     private String author;
 
+    @JsonFormat(pattern = "yyyyMMdd")
     @Min(15000101)
     @Max(20250101)
     private Date yearPublished;
