@@ -1,5 +1,6 @@
-package algebra.spring_boot.category;
+package algebra.spring_boot.category.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,7 +8,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class UpdateCategoryDto {
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String description;
 }

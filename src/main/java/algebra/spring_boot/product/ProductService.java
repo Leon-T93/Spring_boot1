@@ -1,5 +1,7 @@
 package algebra.spring_boot.product;
 
+import algebra.spring_boot.product.dto.CreateProductDto;
+import algebra.spring_boot.product.dto.UpdateProductDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +14,7 @@ public class ProductService {
         return new Product(12L, dto.getName());
     }
 
-    public Product update(Long id,UpdateProductDto dto) {
+    public Product update(Long id, UpdateProductDto dto) {
         Product productFromDb= new Product(id, "old name");
 
         productFromDb.setName(dto.getName());

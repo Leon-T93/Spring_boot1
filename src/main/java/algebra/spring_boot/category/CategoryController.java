@@ -1,5 +1,7 @@
 package algebra.spring_boot.category;
 
+import algebra.spring_boot.category.dto.CreateCategoryDto;
+import algebra.spring_boot.category.dto.UpdateCategoryDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +44,11 @@ public class CategoryController {
     public ResponseEntity<Category> update (@Valid @RequestBody UpdateCategoryDto dto, @PathVariable Integer id) {
         Category category = categoryService.update(id,dto);
         return ResponseEntity.status(200).body(category);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete (@PathVariable Long id) {
+        categoryService.delete(id);
+        return ResponseEntity.status(204).build();
     }
 }

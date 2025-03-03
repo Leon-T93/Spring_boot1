@@ -1,6 +1,7 @@
 package algebra.spring_boot.category;
 
-import algebra.spring_boot.article.UpdateArticleDto;
+import algebra.spring_boot.category.dto.CreateCategoryDto;
+import algebra.spring_boot.category.dto.UpdateCategoryDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,9 @@ public class CategoryService {
         categoryForUpdate.setDescription(dto.getDescription());
 
         return categoryRepository.update(categoryForUpdate);
+    }
+
+    public void delete (Long id) {
+        categoryRepository.delete(id);
     }
 }

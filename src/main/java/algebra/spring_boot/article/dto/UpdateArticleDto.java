@@ -1,4 +1,4 @@
-package algebra.spring_boot.article;
+package algebra.spring_boot.article.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,9 +7,10 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+
 @Data
 @AllArgsConstructor
-public class CreateArticleDto {
+public class UpdateArticleDto {
 
     @NotBlank
     private String name;
