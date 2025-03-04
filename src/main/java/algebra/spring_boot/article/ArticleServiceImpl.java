@@ -3,7 +3,7 @@ package algebra.spring_boot.article;
 import algebra.spring_boot.article.dto.CreateArticleDto;
 import algebra.spring_boot.article.dto.UpdateArticleDto;
 import algebra.spring_boot.category.Category;
-import algebra.spring_boot.category.CategoryRepository;
+import algebra.spring_boot.category.CategoryRepositoryImpl;
 import org.apache.logging.log4j.util.InternalException;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepositoryImpl categoryRepositoryImpl;
 
-    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepository categoryRepository) {
+    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepositoryImpl categoryRepositoryImpl) {
         this.articleRepository = articleRepository;    // umjesto @RequiredArgsConstructor
-        this.categoryRepository = categoryRepository;
+        this.categoryRepositoryImpl = categoryRepositoryImpl;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article create (CreateArticleDto dto){
-        Optional<Category> category = categoryRepository.findById(dto.getCategoryId());
+        Optional<Category> category = categoryRepositoryImpl.findById(dto.getCategoryId());
 
         if (category.isEmpty()) {
             throw new InternalException("Category not found");
@@ -53,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
             throw new InternalException("Article not found.");
         }
 
-        Optional<Category> category = categoryRepository.findById(dto.getCategoryId());
+        Optional<Category> category = categoryRepositoryImpl.findById(dto.getCategoryId());
         if (category.isEmpty()) {
             throw new InternalException("Category not found");
         }
@@ -68,7 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete (Long id) {
+    public void delete (Integer id) {
         articleRepository.delete(id);
     }
 

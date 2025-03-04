@@ -16,7 +16,7 @@ public interface ArticleService {
 
     Article update (Integer id, UpdateArticleDto dto);
 
-    void delete (Long id);
+    void delete (Integer id);
 
 
 }

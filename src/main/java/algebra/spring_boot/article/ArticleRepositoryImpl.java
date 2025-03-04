@@ -48,9 +48,11 @@ public class ArticleRepositoryImpl implements ArticleRepository{
     }
 
     @Override
-    public void delete (Long id) {
+    public void delete (Integer id) {
         String query = "DELETE FROM Article WHERE id=?";
-        jdbcTemplate.update(query,id);
+        var result= jdbcTemplate.update(query,id);
+
+        System.out.println("Obrisano je: "+ result + " stupaca");
     }
 
 

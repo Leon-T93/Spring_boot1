@@ -47,8 +47,14 @@ public class ArticleController {
         return ResponseEntity.status(200).body(article);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete (@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete (@PathVariable Integer id) {
+        Optional<Article> article= articleService.findById(id);
+
+        if (article.isEmpty()) {
+            return ResponseEntity.status(404).build();
+
+        }
         articleService.delete(id);
         return ResponseEntity.status(204).build();
     }

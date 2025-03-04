@@ -13,5 +13,5 @@ public interface ArticleRepository {
 
     Article update (Article article);
 
-    void delete (Long id);
+    void delete (Integer id);
 }
