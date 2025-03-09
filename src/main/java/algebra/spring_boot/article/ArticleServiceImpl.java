@@ -17,14 +17,14 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final CategoryRepositoryImpl categoryRepositoryImpl;
 
-    public ArticleServiceImpl(ArticleRepositoryImpl articleRepository, CategoryRepositoryImpl categoryRepositoryImpl) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, CategoryRepositoryImpl categoryRepositoryImpl) {
         this.articleRepository = articleRepository;    // umjesto @RequiredArgsConstructor
         this.categoryRepositoryImpl = categoryRepositoryImpl;
     }
 
     @Override
     public List<Article> fetchAll () {
-        return articleRepository.fetchAll();
+        return articleRepository.findAll();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         Article article = new Article(dto.getName(),dto.getDescription(),dto.getPrice(),category.get());
 
-        return articleRepository.create(article);
+        return articleRepository.save(article);
     }
 
     @Override
@@ -64,12 +64,17 @@ public class ArticleServiceImpl implements ArticleService {
         articleForUpdate.setPrice(dto.getPrice());
         articleForUpdate.setCategory(category.get());
 
-        return articleRepository.update(articleForUpdate);
+        return articleRepository.save(articleForUpdate);
     }
 
     @Override
     public void delete (Integer id) {
-        articleRepository.delete(id);
+        Optional<Article> article = articleRepository.findById(id);
+
+        if (article.isEmpty()) {
+            throw new InternalException("Article not found.");
+        }
+        articleRepository.delete(article.get());
     }
 
 
