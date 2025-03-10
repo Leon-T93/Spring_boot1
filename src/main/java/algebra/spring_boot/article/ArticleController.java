@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,44 @@ import java.util.Optional;
 public class ArticleController {
 
     private final ArticleService articleService;
+
+
+    @GetMapping ("/finder")
+    public ResponseEntity<List<Article>> findByPriceGreaterThanEqualAndPriceLessThanEqualAndCategory_id (@RequestParam(value= "low")BigDecimal low,
+                                                                                                         @RequestParam(value = "high")BigDecimal high,
+                                                                                                         @RequestParam(value = "id")Integer id){
+        List<Article> articles = articleService.findByPriceGreaterThanEqualAndPriceLessThanEqualAndCategory_id(low,high,id);
+        return ResponseEntity.status(200).body(articles);
+    }
+
+    @GetMapping ("/finder2")
+    public ResponseEntity<List<Article>> findByNameIgnoreCaseIsOrDescriptionIgnoreCaseIs (@RequestParam(value = "name")String name,
+                                                                                          @RequestParam(value = "description")String description){
+        List<Article> articles = articleService.findByNameIgnoreCaseIsOrDescriptionIgnoreCaseIs(name, description);
+        return ResponseEntity.status(200).body(articles);
+    }
+
+    @GetMapping("/finder3")
+    public ResponseEntity<Optional<Article>> findTop1ByPriceOrderByDescContainingCategory_id (@RequestParam(value = "id")Integer id) {
+        Optional<Article> article = articleService.findTop1ByPriceOrderByPriceDescContainingCategory_id(id);
+        return ResponseEntity.status(200).body(article);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Article>> fetchAll () {
