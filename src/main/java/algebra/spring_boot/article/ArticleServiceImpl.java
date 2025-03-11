@@ -36,8 +36,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Optional<Article> findTop1ByPriceOrderByPriceDescContainingCategory_id (Integer id) {
-        return articleRepository.findTop1ByPriceOrderByPriceDescContainingCategory_id(id);
+    public Optional<Article> findTop1ByOrderByPriceDesc () {
+        return articleRepository.findTop1ByOrderByPriceDesc();
+    }
+
+    @Override
+    public Integer countByCategory_id (Integer id) {
+        return articleRepository.countByCategory_id(id);
     }
 
 

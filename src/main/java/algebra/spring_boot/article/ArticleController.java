@@ -35,8 +35,14 @@ public class ArticleController {
     }
 
     @GetMapping("/finder3")
-    public ResponseEntity<Optional<Article>> findTop1ByPriceOrderByDescContainingCategory_id (@RequestParam(value = "id")Integer id) {
-        Optional<Article> article = articleService.findTop1ByPriceOrderByPriceDescContainingCategory_id(id);
+    public ResponseEntity<Optional<Article>> findTop1ByOrderByPriceDesc () {
+        Optional<Article> article = articleService.findTop1ByOrderByPriceDesc();
+        return ResponseEntity.status(200).body(article);
+    }
+
+    @GetMapping("/finder4")
+    public ResponseEntity<Integer> countByCategory_id (@RequestParam(value = "id")Integer id) {
+        Integer article = articleService.countByCategory_id(id);
         return ResponseEntity.status(200).body(article);
     }
 

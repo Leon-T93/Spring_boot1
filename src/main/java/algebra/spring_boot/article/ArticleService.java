@@ -13,7 +13,9 @@ public interface ArticleService {
 
     List<Article> findByNameIgnoreCaseIsOrDescriptionIgnoreCaseIs (String name, String description);
 
-    Optional<Article> findTop1ByPriceOrderByPriceDescContainingCategory_id (Integer id);
+    Optional<Article> findTop1ByOrderByPriceDesc ();
+
+    Integer countByCategory_id (Integer id);
 
 
 
