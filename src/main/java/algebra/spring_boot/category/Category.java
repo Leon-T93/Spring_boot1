@@ -1,16 +1,15 @@
 package algebra.spring_boot.category;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Category {
 
@@ -21,9 +20,4 @@ public class Category {
     private String name;
 
     private String description;
-
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 }

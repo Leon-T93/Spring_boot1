@@ -2,13 +2,11 @@ package algebra.spring_boot.category;
 
 import algebra.spring_boot.article.Article;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
 public class CategoryRowMapper implements RowMapper<Category> {
 
     @Override
@@ -17,8 +15,7 @@ public class CategoryRowMapper implements RowMapper<Category> {
         String name = rs.getString("name");
         String description = rs.getString("description");
 
-
-        Category category = new Category(id,name,description);
+        Category category = new Category(id, name, description);
 
         return category;
     }

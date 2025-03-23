@@ -1,17 +1,25 @@
 package algebra.spring_boot.category;
 
-import java.util.List;
+import algebra.spring_boot.article.ArticleRowMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
-public interface CategoryRepository {
+@Repository
+@RequiredArgsConstructor
+public class CategoryRepository {
 
-    List<Category> fetchAll ();
+    private final JdbcTemplate jdbcTemplate;
 
-    Optional<Category> findById (Integer id);
-
-    Category create (Category category);
-
-    Category update (Category category);
-
-    void delete (Integer id);
+    public Optional<Category> findById(Integer id){
+        String query = "SELECT * FROM Category WHERE id = ?";
+        try {
+            return Optional.ofNullable(jdbcTemplate.queryForObject(query, new CategoryRowMapper(), id));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
 }

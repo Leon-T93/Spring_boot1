@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.function.Function;
 
 @Component
 public class JwtService {
@@ -46,29 +47,10 @@ public class JwtService {
         return allClaims.getExpiration();
     }
 
-
-    //  -----------------------------------------------------------------------------------------------------------------
-//
-//    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
-//        Claims claims = extractAllClaims(token);
-//        return claimsResolver.apply(claims);
-//    }
-//   -------------------------------------------------------------------------------------------------------------------
-
-//  Ovo gore se koristilo kao primjer za gore extractdate i username kada je bilo skraceno za klasu Claims kao za skracenu for petlju- Claims::getExpiration
-    // ------------------------------------------------------------------------------------------------------------------
-//   Primjer:   -----
-
-//   List<Article> articles = articleService.fetchAll();
-//
-//    List<String> articleNamesFromForLoop = new ArrayList<>();
-//    for (Article article : articles) {
-//       articleNamesFromForLoop.add(article.getName());
-//    }
-//
-//    List<String> articleNames = articles.stream().map(Article::getName).toList();
-//        // TODO: Proučiti svakako jer ce vam trebati u svakodnevnom programiranju kasnije
-
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+        Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
 
     private Claims extractAllClaims(String token){
         return Jwts.parser()

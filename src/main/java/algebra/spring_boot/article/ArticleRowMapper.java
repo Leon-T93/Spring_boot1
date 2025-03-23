@@ -8,20 +8,20 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
 public class ArticleRowMapper implements RowMapper<Article> {
     @Override
     public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
+
         Integer id = rs.getInt("Id");
         String name = rs.getString("name");
         String description = rs.getString("description");
         BigDecimal price = rs.getBigDecimal("price");
-        Integer categoryId = rs.getInt("category_id");
+        Integer categoryId = rs.getInt("category_Id");
         String categoryName = rs.getString("categoryName");
         String categoryDescription = rs.getString("categoryDescription");
 
-        Category category = new Category(categoryId,categoryName,categoryDescription);
+        Category category = new Category(categoryId, categoryName, categoryDescription);
 
-        return new Article(id, name, description,price,category);
+        return new Article(id, name, description, price, category);
     }
 }

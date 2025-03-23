@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Ref;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -45,7 +46,6 @@ public class AuthController {
 
         RefreshToken refreshToken = refreshTokenService.generateRefreshToken(user.getId());
 
-
         LoginResponseDto loginResponseDto = new LoginResponseDto(accessToken, refreshToken.getRefreshToken());
 
         return ResponseEntity.ok(loginResponseDto);
@@ -56,11 +56,10 @@ public class AuthController {
         RefreshToken refreshToken = refreshTokenService.findByToken(dto.getRefreshToken());
         Date expireDate = jwtService.extractExpirationDate(refreshToken.getRefreshToken());
 
-        if (expireDate.before(new Date())) {
-            // ovdje dodati brisanje refreshTokena u slucaju da je istekao posto se sprema u bazu
+        if (expireDate.before(new Date())){
+            // dodati brisanje refreshTokena u slucaju da je istekao
             throw new RuntimeException("Refresh token expired.");
         }
-
 
         User user = userService.findById(refreshToken.getUserId());
 

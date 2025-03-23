@@ -1,6 +1,7 @@
 package algebra.spring_boot.article;
 
 import algebra.spring_boot.category.Category;
+import algebra.spring_boot.category.CategoryRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Article {
 
@@ -35,7 +36,7 @@ public class Article {
         this.price = price;
     }
 
-    public Article (String name, String description, BigDecimal price, Category category) {
+    public Article(String name, String description, BigDecimal price, Category category){
         this.name = name;
         this.description = description;
         this.price = price;

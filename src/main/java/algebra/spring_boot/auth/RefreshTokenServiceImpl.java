@@ -15,8 +15,6 @@ public class RefreshTokenServiceImpl implements  RefreshTokenService{
 
     private final JwtService jwtService;
 
-
-
     @Override
     public RefreshToken findByUserId(Long userId) {
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByUserId(userId);
@@ -33,7 +31,7 @@ public class RefreshTokenServiceImpl implements  RefreshTokenService{
         String token = jwtService.generateRefreshToken(userId.toString());
         Date expiresAt = jwtService.extractExpirationDate(token);
         RefreshToken refreshToken = new RefreshToken(token, userId, expiresAt);
-        return refreshTokenRepository.save(refreshToken);
+       return refreshTokenRepository.save(refreshToken);
     }
 
     @Override
